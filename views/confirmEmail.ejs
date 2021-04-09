@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyprowadz mnie | Email</title>
+    <link rel="stylesheet" href="css/email.css">
+    <link rel="Shortcut icon" href="image/logo.svg"> 
+    <meta name="description" content="X"/> <!-- Do zrobienia -->
+    <meta name="keywords" content="słowo_kluczowe 1, słowo_kluczowe 2"/>
+    <meta name="author" content="Author name" />
+    <meta name="copyright" content="Copyright owner" /> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+</head>
+<body>
+    <main>
+            <div class="login">
+                <h1 class="login__headline">wyprowadźmnie.com</h1>
+                <img alt="Ikonka email-a" src="image/mail.svg" class="login__email">
+                <h2 class="login__text margin">Wiadmość z linkiem aktywacyjnym</h2>
+                <h2 class="login__text marginb">Konta została wysłana na adres:</h2>
+                <h3 class="marginb"><%= email %></h3>
+                <form action="resendEmail" method="post">
+                    <button class="login__button" name="email" value=<%= email %>
+                        Wyslij ponownie</button>
+                </form>
+            </div>
+            <a href="/login"><button class="login__forgot"><h3>Logowanie</h3></button></a>
+    </main>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyprowadz mnie - Strona zabroniona</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="Shortcut icon" href="logo.PNG"> 
+    <meta name="description" content="Wyprowadź mnie: platforma z lokalnymi ogłoszeniami, pomagająca osobom bez możliwości wyjścia z domu w opiece nad ich pupilami."/>
+    <meta name="keywords" content="opieka, pies"/>
+    <meta name="author" content="BS, TF, ML" />
+    <meta name="copyright" content="Copyright owner" /> 
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+img{
+    width: 70px;
+    position: sticky;
+    padding-top: 20px;
+    transition: 0.1s linear;
+}
+img:hover{
+    transform: scale(1.05);
+}
+.main{
+    width: 400px;
+    height: 400px;
+    box-shadow: 0px 0px 10px 1px #00000028;
+    margin: auto;
+    text-align: center;
+}
+h1{
+    text-transform: uppercase;
+    color: #D13535;
+    padding-top: 30px;
+}
+button{
+    border: solid 0px #575757;
+    border-radius: 60px;
+    padding: 10px;
+    margin-top: 40px;
+    background-color: #72F69A;;
+    color: #000;
+    transition: 0.1s linear;
+    cursor: pointer;
+}
+p{
+    margin-top: 15px;
+}
+button:hover{
+    transform: scale(1.05);
+}
+a{
+    text-decoration: none;
+    
+}
+@media (max-width: 500px){
+    .main{
+        max-width: 100vw;
+    }
+}
+    </style>
+</head>
+<body>
+    
+    <div class="main">
+        <img src="/image/logo.svg"/>
+        <h1>Nie masz dostępu <br>do tej strony</h1>
+        <p>ERROR CODE: 403</p>
+        <a href="https://wyprowadzmnie.com"><button>Powrót do strony głównej</button></a>
+    </div>
+
+</body>
+</html>

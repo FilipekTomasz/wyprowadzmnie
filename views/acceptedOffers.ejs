@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyprowadz mnie | Zaakceptowane oferty</title>
+    <link rel="stylesheet" href="css/oferty.css">
+    <link rel="Shortcut icon" href="image/logo.svg"> 
+    <meta name="description" content="Wyprowadź mnie: platforma z lokalnymi ogłoszeniami, pomagająca osobom bez możliwości wyjścia z domu w opiece nad ich pupilami."/> 
+    <meta name="keywords" content="opieka, pies"/>
+    <meta name="author" content="Wyprowadzmnie.com" />
+    <meta name="copyright" content="Wyprowadz mnie ©2021" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <style>
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header">
+                <a href="/menu" class="alink"><img class="header__logo" src="image/pies.svg" alt="Logo wyprowadź mnie"></a>
+                <div class="header__info">
+                     <a href="/edit"><h1 class="header__info--user"><%= loggedAs %> <i class="fas fa-user-edit"></i></h1></a>
+                   <a href="/logout"> <h2 class="header__info--log">Wyloguj się</h2></a>
+                </div>
+                <div class="header__oferts">
+                    <h2>Zaakceptowane oferty <i class="fas fa-paw"></i></h2>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container con">
+
+        </div>
+    </main>
+    <footer>
+        <div class="footer"><h2>wyprowadzmnie.com</h2></div>
+    </footer>
+<script>
+     var offers = <%- JSON.stringify(offersIveTaken) %>     
+    
+    
+        
+    function redirectChat(offerId){
+        window.location.href = `/redirectChat/${offerId}`
+    }
+
+
+    for(let i = 0; i < offers.length; i++){
+
+            let fM = offers[i].fromMonth
+            let fD = offers[i].fromDay
+            let tM = offers[i].toMonth
+            let tD = offers[i].toDay
+            let fH = offers[i].fromHour
+            let fmi = offers[i].fromMinute
+            let tH = offers[i].toHour
+            let tmi = offers[i].toMinute
+
+            if(offers[i].fromMonth < 10){
+                fM = '0' + offers[i].fromMonth
+            }
+            if(offers[i].fromDay < 10){
+                fD = '0' + offers[i].fromDay
+            }
+            if(offers[i].toMonth < 10){
+                tM = '0' + offers[i].toMonth
+            }
+            if(offers[i].toDay < 10){
+                tD = '0' + offers[i].toDay
+            }
+            if(offers[i].fromHour < 10){
+                fH = '0' + offers[i].fromHour
+            }
+            if(offers[i].fromMinute < 10){
+                fmi = '0' + offers[i].fromMinute
+            }
+            if(offers[i].toHour < 10){
+                tH = '0' + offers[i].toHour
+            }
+            if(offers[i].toMinute < 10){
+                tmi = '0' + offers[i].toMinute
+            }
+            
+        let div = document.createElement("div");
+        
+        div.classList.add("box");
+
+        if(offers[i].filename == null || offers[i].filename == ''){
+            offers[i].filename = 'default.png'
+        }
+
+        let elem = document.createElement("img");
+        elem.classList.add('box__img')
+        elem.setAttribute("src", "/image/" + offers[i].filename);
+
+
+        let btn = document.createElement('button');
+        btn.classList.add('box__btn')
+        btn.setAttribute("onclick", `redirectChat("${offers[i].id}")`);
+        btn.innerHTML = 'Chat';
+        {
+            const d = document.createElement('div');
+            d.innerHTML = `${offers[i].dogName}`  
+            d.classList.add('box__dogName')
+            div.appendChild(d);
+        }
+
+        {
+            const d = document.createElement('div');
+            d.innerHTML = `${offers[i].dogType}`  
+            d.classList.add('box__dogType')
+            div.appendChild(d);
+        }
+
+        {
+            const d = document.createElement('div');
+            if(fD == tD){
+                d.innerHTML = `Dzień: ${fD} ${fM}` 
+            } else {
+                d.innerHTML = `Dni: ${fD} ${fM} - ${tD} ${tM}` 
+            }
+            
+            d.classList.add('box__fD')
+            div.appendChild(d);
+        }
+
+        {
+            const d = document.createElement('div');
+            d.innerHTML = `Godziny: ${fH}:${fmi}-${tH}:${tmi}`  
+            d.classList.add('box__fH')
+            div.appendChild(d);
+        }
+
+        {
+            const d = document.createElement('div');
+            d.innerHTML = `Wartość oferty: ${offers[i].pay} zł` 
+            d.classList.add('box__pay')
+            div.appendChild(d);
+        }
+
+        div.appendChild(btn);
+        div.appendChild(elem);
+        document.querySelector(".con").appendChild(div)
+    }
+
+
+    function accept(offerId){
+        window.location.href = `/acceptOffer/${offerId}`
+    }
+</script>
+</body>
+</html>

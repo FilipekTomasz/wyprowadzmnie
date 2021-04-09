@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyprowadz mnie | Edycja profilu</title>
+    <link rel="stylesheet" href="css/edit.css">
+    <link rel="Shortcut icon" href="image/logo.svg"> 
+    <meta name="description" content="X"/> 
+    <meta name="keywords" content="słowo_kluczowe 1, słowo_kluczowe 2"/>
+    <meta name="author" content="Author name" />
+    <meta name="copyright" content="Wyprowadz mnie ©2021" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header">
+                <a href="/" class="alink"><img class="header__logo" src="image/pies.svg" alt="Logo wyprowadź mnie"></a>
+                <div class="header__info">
+                    <a href="/edit"><h1 class="header__info--user"><%= loggedAs %></h1></a>
+                    <a href="/logout"><h2 class="header__info--log">Wyloguj się</h2></a>
+                </div>
+                <h2 class="header__edit">Edycja profilu</h2>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="edit">
+                <h2 class="edit__name">wyprowadźmnie.com</h2>
+                <div class="edit__left">
+                    <h2 class="edit__left--headline"> Dane konta</h2>
+                        <div class="edit__left--block">
+                            <h3>Imie Nazwisko</h3><h3 class="edit__left--right"><%= loggedAs %></h3>
+                            <button><i class="far fa-edit"></i></button>
+                        </div>
+                        <div class="edit__left--block">
+                            <h3>Email</h3><h3 class="edit__left--right"><%= email %></h3>
+                            <button><i class="far fa-edit"></i></button>
+                        </div>
+                        <div class="edit__left--block">
+                            <h3>Numer telefonu</h3><h3 class="edit__left--right"><%= telephone %></h3>
+                            <button><i class="far fa-edit"></i></button>
+                        </div>
+                        <div class="edit__left--block">
+                            <h3>Hasło</h3><h3 class="edit__left--right">*********</h3>
+                            <button><i class="far fa-edit"></i></button>
+                        </div>
+                        <div class="edit__left--block">
+                            <h3>Miasto</h3><h3 class="edit__left--right"><%= city %></h3>
+                            <span><%= postCode %></span>
+                            <button><i class="far fa-edit"></i></button>
+                        </div>
+                </div>
+                <div class="edit__right">
+                    <img src="image/rnak.svg" class="edit__right--img" alt="zdjęcie z gwiazdami">
+                    <h3 class="edit__right--headline">Twoja osobista ocena <span>Wkrótce</span></h3>
+                    <p>Średnia ocena twoich usług na podstawie wykonanych przez Ciebie ostatnich zleceń.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

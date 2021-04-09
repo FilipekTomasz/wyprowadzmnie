@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyprowadz mnie | Dodawanie oferty</title>
+    <link rel="stylesheet" href="css/dofert.css">
+    <link rel="Shortcut icon" href="image/logo.svg"> 
+    <meta name="description" content="X"/> <!-- Do zrobienia -->
+    <meta name="keywords" content="słowo_kluczowe 1, słowo_kluczowe 2"/>
+    <meta name="author" content="Author name" />
+    <meta name="copyright" content="Wyprowadz mnie ©2021" />
+    <link rel="stylesheet" type="text/css" href="./css/lightpick.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">	
+</head>
+<body>
+                <% if (message.length > 0){ %>
+            <div class="notification">
+                <h3><%= message %></h3>
+            </div>
+            <%}%>
+
+    <header>
+        <div class="container">
+            <div class="header">
+                <a href="/menu" class="alink"><img class="header__logo" src="image/pies.svg" alt="Logo wyprowadź mnie"></a>
+                <div class="header__info">
+                     <a href="/edit"><h1 class="header__info--user"><%= loggedAs %> <i class="fas fa-user-edit"></i></h1></a>
+                    <a href="logout"><h2 class="header__info--log">Wyloguj się</h2></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <h1 class="headline">Dodaj ogłoszenie</h1>
+            <form action="/addOffer" method="POST" enctype="multipart/form-data">
+                <div class="dog">
+                    <div class="dog__name">
+                        <label for="dogName">Imię psa</label>
+                        <input type="text" id="dogName" name="dogName" required>
+                    </div>
+                    <div class="dog__breed">
+                        <label for="dogType">Rasa psa</label>
+                        <input type="text" id="dogType" name="dogType" required>
+                    </div>  
+                    <div class="dog__photo">
+                        <label for="image">Dodaj zdjęcie psa:  </label><input type="file" id="image" class="custom-file-input" name="image">
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="from">
+                    <h2>Od</h2>
+                        <div class="from__month">
+                            <input type="text" id="datepicker" placeholder="01/01/2021">
+                        </div>
+                            <div class="from__box">
+                                <div class="from__hours">
+                                    <label for="fromHour">Godzina</label>
+                                    <input type="number" id="fromHour" name="fromHour" min="00" max="24" placeholder="12" required>
+                                </div>
+                                <div class="from__minuts">
+                                    <label for="fromMinute">Minuta</label>
+                                    <input type="number" id="fromMinute" name="fromMinute" min="00" max="59" placeholder="00" required>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="to">
+                    <h2>Do</h2>
+                        <div class="to__month">
+                            <input type="text" id="datepickerr" placeholder="01/01/2021">
+                        </div>
+                            <div class="to__box">
+                                <div class="to__hours">
+                                    <label for="toHour">Godzina</label>
+                                    <input type="number" id="toHour" placeholder="12"  min="00" max="24" name="toHour" required>
+                                </div>
+                                <div class="to__minuts">
+                                    <label for="toMinute">Minuta</label>
+                                    <input type="number" id="toMinute" placeholder="00" min="00" max="59"  name="toMinute" required>
+                            </div>
+                        </div>
+                                      <input type = "hidden" name = "fromMonth" value = "1" id = "fromMonthH"/>
+                            <input type = "hidden" name = "fromDay" value = "1" id = "fromDayH"/>
+                                             <input type = "hidden" name = "toMonth" value = "1" id = "toMonthH"/>
+                            <input type = "hidden" name = "toDay" value = "1"  id  = "toDayH"/>
+                    </div>
+                </div>
+                <div class="payment">
+                    <div>
+                        <label for="pay">Zapłata za spacer (opcjonalne)</label>
+                        <input type="number" id="pay" name="pay" min="0" placeholder="0" value="0" required>
+                    </div>
+                </div>
+                <div class="button"><button type="submit" id="t" class="button__add">Dodaj oferte</button></div>
+            </form>
+        </div>
+    </main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="js/lighpick.js"></script>
+<script>
+        var picker = new Lightpick({ field: document.getElementById('datepicker'),
+         onSelect: (start, end) =>{
+             let str = start.format('DD/MM/YYYY');
+             document.getElementById('fromMonthH').value = start.format('M');
+             document.getElementById('fromDayH').value = start.format('D');
+             document.getElementById('toMonthH').value = start.format('M');
+             document.getElementById('toDayH').value = start.format('D');
+
+             document.getElementById('datepickerr').value = str;
+         }
+          });
+        var picker1 = new Lightpick({ 
+            field: document.getElementById('datepickerr'),
+            onSelect: (start, end) => {
+                document.getElementById('toMonthH').value = start.format('M');
+                document.getElementById('toDayH').value = start.format('D');
+            }
+         });
+</script>
+</body>
+</html>

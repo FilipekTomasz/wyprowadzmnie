@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyprowadz mnie | Chat</title>
+    <link rel="stylesheet" href="../../css/chat.css">
+    <link rel="Shortcut icon" href="../../image/logo.svg"> 
+    <meta name="description" content="X"/> <!-- Do zrobienia -->
+    <meta name="keywords" content="słowo_kluczowe 1, słowo_kluczowe 2"/>
+    <meta name="author" content="Wyprowadzmnie.com" />
+    <meta name="copyright" content="Copyright owner" /> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="navigation">
+                <a href="/menu"><img class="navigation__logo" src="../../image/pies.svg" alt="Logo wyprowadź mnie"></a>
+                <h2 class="navigation__back"><a href="/menu">Wróć do menu</a></h2>
+                <h1>Chat <i class="fas fa-comments"></i></h1>
+            </div>
+    </header>
+    <main>
+            <div class="chatBox">
+                <h3 class="chatBox__web">wyprowadzmnie.com</h3>
+                <h2 class="chatBox__name"><%= otherName %></h2> 
+                <h2 class="chatBox__number"><%= otherNumber %></h2>
+                <div id="chatBox" class="chatBox__box">
+            </div>
+                <form id="chat-form" class="send">
+                <input id="msg" type="text" placeholder="Napisz wiadomość" class="send__box" required autocomplete="off"/>
+                    <button class="btn" class="send__btn"> Wyslij </button>
+                </form>
+            </div>
+    </main>
+
+    <script>
+        // ejs variables
+        var sender =  '<%= youremail %>'
+        var receiver = '<%= otheremail %>'
+        var chat = <%- JSON.stringify(chat) %>     
+    </script>
+
+    <script>
+
+    </script>
+
+
+    <script src="/js/chat.js"></script>
+</body>
+</html>

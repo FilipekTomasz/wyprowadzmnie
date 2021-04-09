@@ -1,0 +1,77 @@
+<head>
+<style>
+form{
+    display: inline;
+}
+
+
+
+</style>
+</head>
+
+<h2><a href="/addOffer">Dodaj oferte</a></h2>
+<h1>Jestes zalogowany jako: <%= loggedAs %></h1>
+
+<h1><a href="/menu"> Menu </a></h1>
+<script>
+
+    const offers = <%- JSON.stringify(myOffers) %>     
+    const offersIveTaken =  <%- JSON.stringify(offersIveTaken) %>
+
+    document.body.innerHTML += '<h1> Moje oferty </h1>'
+
+    for(let i = 0; i < offers.length; i++){
+        let div = document.createElement("div");
+
+        div.innerHTML = `Id: ${offers[i].id}, tutaj beda jakies informacje itp`
+
+        if(offers[i].TakenBy == null || offers[i].TakenBy == ''){
+           div.style.backgroundColor = '#ff6699';
+        } else {
+           div.style.backgroundColor = '#66ff99';
+        }
+
+        
+        let btn = document.createElement('button');
+
+        btn.setAttribute("onclick", `redirectChat("${offers[i].id}")`);
+        btn.innerHTML = 'Chat';
+
+        div.appendChild(btn);
+
+
+
+       
+        div.appendChild(btn);
+
+         div.innerHTML += `<form action="/deleteOffer/${offers[i].id}" method="POST">   <button type="submit"> Usuń </button></form>`
+
+
+        document.body.appendChild(div);
+    }
+
+    document.body.innerHTML += '<h1> Oferty ktore wybralem </h1>'
+
+        for(let i = 0; i < offersIveTaken.length; i++){
+        let div = document.createElement("div");
+
+        div.style.backgroundColor = '#6699ff';
+
+        div.innerHTML = `Id: ${offersIveTaken[i].id}, tutaj beda jakies informacje itp`
+
+       
+
+
+        let btn = document.createElement('button');
+
+        btn.setAttribute("onclick", `redirectChat("${offersIveTaken[i].id}")`);
+        btn.innerHTML = 'chat';
+
+
+        div.appendChild(btn);
+        document.body.appendChild(div);
+    }
+
+
+
+</script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyprowadz mnie | Menu</title>
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="Shortcut icon" href="image/logo.svg"> 
+    <meta name="description" content="Wyprowadź mnie: platforma z lokalnymi ogłoszeniami, pomagająca osobom bez możliwości wyjścia z domu w opiece nad ich pupilami."/> 
+    <meta name="keywords" content="opieka, pies"/>
+    <meta name="author" content="Wyprowadzmnie.com" />
+    <meta name="copyright" content="Wyprowadz mnie ©2021" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header">
+                <a href="/menu" class="alink"><img class="header__logo" src="image/pies.svg" alt="Logo wyprowadź mnie"></a>
+                <div class="header__info">
+                     <a href="/edit"><h1 class="header__info--user"><%= loggedAs %> <i class="fas fa-user-edit"></i></h1></a>
+                    <a href="/logout"><h2 class="header__info--log">Wyloguj się</h2></a></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="menu">
+                <a href="/offers">
+                    <div class="menu__box">
+                        <h2>OGŁOSZENIA</h2>
+                    </div>
+                </a>
+                <a href="/addOffer">
+                    <div class="menu__box">
+                        <h2>DODAJ OGŁOSZENIE</h2>
+                    </div>
+                </a>
+                <a href="/myOffers">
+                    <div class="menu__box">
+                        <h2>MOJE OGŁOSZENIA</h2>
+                    </div>
+                </a>
+                <a href="/myAcceptedOffers">
+                    <div class="menu__box">
+                        <h2>ZAAKCEPTOWANE OFERTY</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

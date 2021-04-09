@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyprowadz mnie | Nowe hasło</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="Shortcut icon" href="image/logo.svg"> 
+    <meta name="description" content="X"/> <!-- Do zrobienia -->
+    <meta name="keywords" content="słowo_kluczowe 1, słowo_kluczowe 2"/>
+    <meta name="author" content="Author name" />
+    <meta name="copyright" content="Copyright owner" /> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+</head>
+<body>
+    <main>
+     <% if (message.length > 0){ %>
+            <div class="notification">
+                <h3><%= message %></h3>
+            </div>
+            <%}%>
+            <div class="login m">
+                <h1 class="login__headline">wyprowadźmnie.com</h1>
+                <form action="/newpass" method="POST" class="login__input">
+                    <a href="/"><img alt="Logo wyprowadź mnie" src="../image/pies.svg" class="login__input--logo"></a>
+                        <p class="rhaslo__p">Po kliknięciu Zmień, nastąpi przekierowanie do strony logowania.</p>
+                        <h2 class="login__input--headline">Podaj nowe hasło</h2>
+                        <input class="login__input--email" placeholder="minimum 8 znaków" type="password" id="password" name="password" required> 
+                        <h2  class="login__input--headline">Powtórz nowe hasło</h2>           
+                        <input class="login__input--password" type="password" placeholder="minimum 8 znaków" id="password" name="password2" required>
+                    <button class="login__input--button" type="submit" name="token" value=<%=token%>>Zmień</button>
+                </form>
+            </div>
+         <!--   <a href="#" class="login__forgot"><h3>Zrestartuj hasło</h3></a> -->
+    </main>
+<script src="js/notification.js"></script>
+</body>
+</html>

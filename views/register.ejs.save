@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyprowadz mnie | Rejestracja</title>
+    <link rel="stylesheet" href="css/registration.css">
+    <link rel="Shortcut icon" href="image/logo.svg"> 
+    <meta name="description" content="X"/> <!-- Do zrobienia -->
+    <meta name="keywords" content="słowo_kluczowe 1, słowo_kluczowe 2"/>
+    <meta name="author" content="Wyprowadzmnie.com" />
+    <meta name="copyright" content="Wyprowadz mnie ©2021" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+            <% if (message.length > 0){ %>
+            <div class="notification">
+                <h3><%= message %></h3>
+            </div>
+            <%}%>
+    <main>
+        <div class="registration">
+            <h1 class="registration__name">wyprowadźmnie.com</h1>
+                <a href="/"><img alt="Ikonka email-a" src="image/pies.svg" class="registration__logo"></a>
+            <h2 class="registration__headline">Rejestracja</h2>
+            <form action="/register" method="POST" class="registration__input" id="verifyForm">
+                <div class="registration__input--box">
+                    <div class="column">
+                        <h2 class="registration__input--headline">Imię</h2>
+                            <input type="text" id="name" name="name" class="registration__input--window" autocomplete="given-name">
+                    </div>
+                    <div class="column">
+                        <h2 class="registration__input--headline">Nazwisko</h2>
+                            <input type="text" id="surname" name="surname" class="registration__input--window" autocomplete="family-name">
+                    </div>
+                </div>
+                <div class="registration__input--box">
+                    <div class="column">
+                        <h2 class="registration__input--headline">Email</h2>
+                            <input type="email" id="email" name="email" class="registration__input--window" required>
+                    </div>
+                    <div class="column">
+                        <h2 class="registration__input--headline">Numer telefonu</h2>
+                            <input type="number" id="phoneNumber" name="phoneNumber" min="0" maxlength="9" class="registration__input--window" required>
+                    </div>
+                </div>      
+                <div class="registration__input--box">
+                    <div class="column">
+                        <h2 class="registration__input--headline">Hasło</h2>
+                            <input type="password" id="password" placeholder="minimum 8 znaków"minlength="8" name="password" class="registration__input--window" required>
+                    </div>
+                    <div class="column">
+                        <h2 class="registration__input--headline">Powtórz hasło</h2>
+                            <input type="password" id="password2" placeholder="minimum 8 znaków" minlength="8" name="password2" class="registration__input--window" required>
+                    </div>
+                </div>
+                <div class="registration__input--box">
+                    <div class="column">
+                        <h2 class="registration__input--headline">Kod pocztowy</h2>
+                        <input type="text" id="inputKod" name="postCode" pattern="^[0-9]{2}-[0-9]{3}$" placeholder="xx-xxx" class="registration__input--window" onchange="apiRequest()" required>
+    
+                    </div>
+                                <div class="column center">
+                            <select name="citiesDropdown"   id="citiesDropdown" name="city" form="verifyForm" required> <option> Miasto</option></select>
+                        </div>
+                </div>
+                <div class="g-recaptcha" data-sitekey="6LcHaQUaAAAAAN0dwDN9--IeX2uWiox52xzcTxXs"></div>
+                <h2 class="registration__input--headline under"> <input type="checkbox" required><a href="/terms">Akceptuje regulamin <i class="fas fa-info-circle"></i></a></h2>
+                <button type="submit" class="registration__input--button">Zarejestruj</button>
+            </form>
+            <div class="registration__info">
+                <img class="registration__info--img" alt="women with dog" src="image/reg.svg">
+                <h2>Dlaczego warto się zarejestrować?</h2>
+                <p>Rejestrując się, wspierasz rozwój naszej strony. Tylko dzięki aktywnej bazie użytkowników, będziemy mogli razem pomóc wielu potrzebującym. Dziękujemy.</p>
+                <a href="/login" class="registration__info--button">Jeśli masz konto Zaloguj się</a>
+            </div>
+        </div>
+    </main>
+<script>
+ $("#postCode").on("keydo", function() {
+  var key = event.keyCode || event.charCode;
+  if (key == 8 || key == 46) {
+    if ($(this).val().length == 4) {
+      $(this).val($(this).val().slice(0, -1));
+    }
+  } else {
+    if ($(this).val().length == 2) {
+      $(this).val($(this).val() + '-');
+    }
+  }
+});
+</script>
+<script src="js/registerCaptcha.js"></script>
+    <script src="js/notification.js"></script>
+    
+      <script>
+async function apiRequest(){
+            //Hide cities dropdown
+            const dropdown = document.getElementById('citiesDropdown');
+            //Get kod value from input thats used in http request
+            const kod = document.getElementById('inputKod').value;
+
+            let response = await fetch(`https://api.codetabs.com/v1/proxy?quest=https://www.kodypocztowe.info/${kod}`);
+            let text = await response.text();
+            
+            let arr = text.split(`Kod pocztowy ${kod} przypisany jest do miejscowości:`);
+            let citiesString = arr[1].split('W wielu przypadkach Urząd pocztowy')[0];
+            let streetFix = citiesString.split('i ulic:');
+            if(streetFix.length > 1){
+                citiesString = streetFix[0];
+            }
+            let cities = citiesString.split(',');
+            console.log(cities);
+
+            let htmlToAdd = '';
+
+            for(let i = 0; i < cities.length; i++){
+                htmlToAdd += `<option value="${cities[i]}">${cities[i]}</option>`
+            }
+
+            dropdown.innerHTML = htmlToAdd;
+            
+
+          
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{
+  "name": "nodejs-wyprowadzmnie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "author": "Tomasz Filipek",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.8.1",
+    "aws-sdk": "^2.866.0",
+    "bcrypt": "^5.0.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "dayjs": "^1.10.4",
+    "ejs": "^2.7.4",
+    "express": "^4.17.1",
+    "express-busboy": "^8.0.0",
+    "express-fileupload": "^1.2.0",
+    "express-flash": "0.0.2",
+    "express-formidable": "^1.2.0",
+    "express-session": "^1.17.1",
+    "formidable": "^1.2.2",
+    "http-proxy": "^1.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "method-override": "^3.0.0",
+    "moment": "^2.29.1",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
+    "net": "^1.0.2",
+    "node-cron": "^2.0.3",
+    "node-fetch": "^2.6.1",
+    "node-schedule": "^2.0.0",
+    "nodemailer": "^6.4.17",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "querystring": "^0.2.0",
+    "request": "^2.88.2",
+    "socket.io": "^3.0.4",
+    "tls": "^0.0.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.0.0",
+    "nodemon": "^2.0.6"
+  },
+  "bin": {
+    "!": "./cli.js"
+  }
+}

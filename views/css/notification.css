@@ -1,0 +1,2 @@
+.notification{position:absolute;-webkit-transform:translate(-50%, -50%);transform:translate(-50%, -50%);left:50%;top:5%;width:30vh;height:5vh;border-radius:4px;color:#43CE47;background-color:#E7F9F1;border:1px solid #9ee9ac;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;font-size:13px}
+/*# sourceMappingURL=notification.css.map */

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyprowadz mnie | Moje oferty</title>
+    <link rel="stylesheet" href="css/oferty.css">
+    <link rel="stylesheet" href="css/zofert.css">
+    <link rel="Shortcut icon" href="image/logo.svg"> 
+    <meta name="description" content="Wyprowadź mnie: platforma z lokalnymi ogłoszeniami, pomagająca osobom bez możliwości wyjścia z domu w opiece nad ich pupilami."/> 
+    <meta name="keywords" content="opieka, pies"/>
+    <meta name="author" content="Wyprowadzmnie.com" />
+    <meta name="copyright" content="Wyprowadz mnie ©2021" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <style>
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header">
+                <a href="/menu" class="alink"><img class="header__logo" src="image/pies.svg" alt="Logo wyprowadź mnie"></a>
+                <div class="header__info">
+                    <a href="/edit"><h1 class="header__info--user"><%= loggedAs %> <i class="fas fa-user-edit"></i></h1></a>
+                     <a href="/logout"><h2 class="header__info--log">Wyloguj się</h2></a>
+                </div>
+                <div class="header__oferts">
+                    <h2>Moje ogłoszenia <i class="fas fa-dog"></i></h2>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container con">
+
+        </div>
+    </main>
+
+<script>
+     var offers = <%- JSON.stringify(myOffers) %>     
+    
+    function redirectChat(offerId){
+        window.location.href = `/redirectChat/${offerId}`
+    }
+    
+
+    let url = 'http://wyprowadzmnie.com/offers/';
+
+    const currentUrl = window.location.href;
+
+    if(currentUrl.includes('www')){
+        url = 'http://www.wyprowadzmnie.com/offers/';
+    }
+
+    const page = currentUrl.replace(url, "");
+
+    if(page == 0){
+       // document.querySelector('#prev').style.display = "none";
+    }
+
+    if(offers.length < 8){
+      //   document.querySelector('#next').style.display = "none";
+    }
+
+    
+    function nextPage(){
+        window.location.href = url + (Number(page) + 1);
+    }
+    
+    function previousPage(){
+         window.location.href = url + (Number(page) - 1);
+    }
+
+    for(let i = 0; i < offers.length; i++){
+
+            let fM = offers[i].fromMonth
+            let fD = offers[i].fromDay
+            let tM = offers[i].toMonth
+            let tD = offers[i].toDay
+            let fH = offers[i].fromHour
+            let fmi = offers[i].fromMinute
+            let tH = offers[i].toHour
+            let tmi = offers[i].toMinute
+
+
+            if(offers[i].fromMonth < 10){
+                fM = '0' + offers[i].fromMonth;
+            }
+            if(offers[i].fromDay < 10){
+                fD = '0' + offers[i].fromDay
+            }
+            if(offers[i].toMonth < 10){
+                tM = '0' + offers[i].toMonth
+            }
+            if(offers[i].toDay < 10){
+                tD = '0' + offers[i].toDay
+            }
+            if(offers[i].fromHour < 10){
+                fH = '0' + offers[i].fromHour
+            }
+            if(offers[i].fromMinute < 10){
+                fmi = '0' + offers[i].fromMinute
+            }
+            if(offers[i].toHour < 10){
+                tH = '0' + offers[i].toHour
+            }
+            if(offers[i].toMinute < 10){
+                tmi = '0' + offers[i].toMinute
+            }
+            
+        let div = document.createElement("div");
+        
+        div.classList.add("box");
+
+        if(offers[i].filename == null || offers[i].filename == ''){
+            offers[i].filename = 'default.png'
+        }
+
+        let elem = document.createElement("img");
+        elem.classList.add('box__img')
+        elem.setAttribute("src", "/image/" + offers[i].filename);
+        
+        let btn = document.createElement('button');
+
+        if(offers[i].TakenBy !== ''){
+            btn.classList.add('box__btn')
+            btn.setAttribute("onclick", `redirectChat("${offers[i].id}")`);
+            btn.innerHTML = 'Chat';
+        }
+        
+        let btn1 = document.createElement('div');
+        btn1.innerHTML = `<form action="/deleteOffer/${offers[i].id}" method="POST">   <button type="submit" class="box__btn1"> Usuń </button></form>`
+        
+
+        {
+            const d = document.createElement('div');
+            d.innerHTML = `${offers[i].dogName}`  
+            d.classList.add('box__dogName')
+            div.appendChild(d);
+        }
+
+        {
+            const d = document.createElement('div');
+            d.innerHTML = `${offers[i].dogType}`  
+            d.classList.add('box__dogType')
+            div.appendChild(d);
+        }
+
+        {
+            const d = document.createElement('div');
+            d.innerHTML = `Dzień: ${fD} ${fM} ${new Date().getFullYear()}`  
+            d.classList.add('box__fD')
+            div.appendChild(d);
+        }
+
+        {
+            const d = document.createElement('div');
+            d.innerHTML = `Godziny: ${fH}:${fmi}-${tH}:${tmi}`  
+            d.classList.add('box__fH')
+            div.appendChild(d);
+        }
+
+        {
+            const d = document.createElement('div');
+            d.innerHTML = `Wartość oferty: ${offers[i].pay} zł` 
+            d.classList.add('box__pay')
+            div.appendChild(d);
+        }
+        if(offers[i].TakenBy !== ''){
+            div.appendChild(btn);
+        }
+
+        div.appendChild(btn1)
+        div.appendChild(elem);
+        document.querySelector(".con").appendChild(div)
+    }
+
+
+    function accept(offerId){
+        window.location.href = `/acceptOffer/${offerId}`
+    }
+</script>
+</body>
+</html>
